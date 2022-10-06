@@ -72,3 +72,7 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('wishlist:login'))
     response.delete_cookie('last_login')
     return response
+
+def ajax_wishlist(request):
+    data = BarangWishlist.objects.all()
+    return HttpResponse(serializers.serialize("ajax", data), content_type="application/ajax")
